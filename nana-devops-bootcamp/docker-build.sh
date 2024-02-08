@@ -1,0 +1,1 @@
+docker build -t ahmedavid/jenkins -f Dockerfile .
