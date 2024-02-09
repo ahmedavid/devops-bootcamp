@@ -10,7 +10,7 @@ def buildImage() {
     passwordVariable: 'PASS',
     usernameVariable: 'USER'
   )]) {
-    sh 'docker build -t ahmedavid/demo-app:jma-2.0 .'
+    sh 'docker build -t ahmedavid/demo-app:jma-2.0 -f ./nana-devops-bootcamp/Dockerfile-JMA .'
     sh "echo $PASS | docker login -u $USER --password-stdin"
     sh 'docker push ahmedavid/demo-app:jma-2.0'
   }
