@@ -1,7 +1,5 @@
 def buildJar() {
   echo "Building the application..."
-  sh 'cd nana-devops-bootcamp/java-maven-app'
-  sh 'pwd'
   sh 'mvn package'
 }
 
