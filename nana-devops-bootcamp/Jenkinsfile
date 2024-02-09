@@ -17,8 +17,10 @@ pipeline {
       }
     }
     stage("prepare") {
-      script {
-        sh "cp -a ./nana-devops-bootcamp/java-maven-app/. ."
+      steps {
+        script {
+          sh "cp -a ./nana-devops-bootcamp/java-maven-app/. ."
+        }
       }
     }
     stage("build jar") {
