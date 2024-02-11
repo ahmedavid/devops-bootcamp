@@ -14,6 +14,19 @@ spec:
       labels:
         app: jenkins-depl
     spec:
+      volumes:
+        - name: jenkins-vol
+          emptyDir: {}
+      initContainers:
+        - name: jenkins-helper
+          image: ahmedavid/jenkins-helper
+          volumeMounts:
+            - mountPath: /var/jenkins_home/
+              name: jenkins-vol
+          command: ["sh","-c","mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf jenkins_home.tar.gz -C /var"]
       containers:
         - image: jenkins/jenkins:latest
           name: jenkins-container
+          volumeMounts:
+            - mountPath: /var/jenkins_home/
+              name: jenkins-vol
