@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: jenkins-svc
+    app: jenkins-depl
   ports:
     - protocol: TCP
       port: 8080
