@@ -68,7 +68,8 @@ spec:
       # annotations:
       #   volume.beta.kubernetes.io/storage-class: anything
     spec:
-      storageClassName: ebs-sc
+      storageClassName: gp2
+
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
