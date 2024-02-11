@@ -1,12 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-svc
+  name: jenkins
 spec:
-  type: ClusterIP
+  # type: LoadBalancer
   selector:
-    app: jenkins-depl
+    name: jenkins
+  # ensure the client ip is propagated to avoid the invalid crumb issue when using LoadBalancer (k8s >=1.7)
+  #externalTrafficPolicy: Local
   ports:
-    - protocol: TCP
-      port: 8080
+    -
+      name: http
+      port: 80
       targetPort: 8080
+      protocol: TCP
+    -
+      name: agent
+      port: 50000
+      protocol: TCP
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: jenkins-svc
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: jenkins-depl
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080

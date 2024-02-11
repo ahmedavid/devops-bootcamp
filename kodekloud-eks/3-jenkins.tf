@@ -9,3 +9,15 @@ resource "kubectl_manifest" "jenkins_service" {
 resource "kubectl_manifest" "jenkins_ingress" {
   yaml_body  = file("values/jenkins/ingress.yaml")
 }
+
+resource "kubectl_manifest" "jenkins_sa" {
+  yaml_body  = file("values/jenkins/sa.yaml")
+}
+
+resource "kubectl_manifest" "jenkins_role" {
+  yaml_body  = file("values/jenkins/role.yaml")
+}
+
+resource "kubectl_manifest" "jenkins_role-binding" {
+  yaml_body  = file("values/jenkins/role-binding.yaml")
+}

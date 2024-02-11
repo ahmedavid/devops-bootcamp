@@ -1,19 +1,52 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: jenkins-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: jenkins
+  # annotations:
+  #   nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  #   kubernetes.io/tls-acme: "true"
+  #   # "413 Request Entity Too Large" uploading plugins, increase client_max_body_size
+  #   nginx.ingress.kubernetes.io/proxy-body-size: 50m
+  #   nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+  #   # For nginx-ingress controller < 0.9.0.beta-18
+  #   ingress.kubernetes.io/ssl-redirect: "true"
+  #   # "413 Request Entity Too Large" uploading plugins, increase client_max_body_size
+  #   ingress.kubernetes.io/proxy-body-size: 50m
+  #   ingress.kubernetes.io/proxy-request-buffering: "off"
 spec:
   ingressClassName: nginx
   rules:
-    - host: jenkins.davidahmadov.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: jenkins-svc
-                port:
-                  number: 8080
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jenkins
+            port:
+              number: 80
+    host: jenkins.davidahmadov.net
+  # tls:
+  # - hosts:
+  #   - jenkins.example.com
+  #   secretName: tls-jenkins
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: jenkins-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: jenkins.davidahmadov.net
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: jenkins-svc
+#                 port:
+#                   number: 8080
