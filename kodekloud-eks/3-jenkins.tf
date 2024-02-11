@@ -10,6 +10,10 @@ resource "kubectl_manifest" "jenkins_ingress" {
   yaml_body  = file("values/jenkins/ingress.yaml")
 }
 
+resource "kubectl_manifest" "jenkins_sc" {
+  yaml_body  = file("values/jenkins/sc.yaml")
+}
+
 resource "kubectl_manifest" "jenkins_sa" {
   yaml_body  = file("values/jenkins/sa.yaml")
 }
