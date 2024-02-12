@@ -26,7 +26,9 @@ spec:
           volumeMounts:
             - mountPath: /var/jenkins_home/
               name: jenkins-home
-          command: ["sh","-c","mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf jenkins_home.tar.gz -C /var"]
+          # command: ["sh","-c","mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf jenkins_home.tar.gz -C /var"]
+          command: ["sh", "-c", "if [ -z \"$(ls -A /var/jenkins_home)\" ]; then mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf /tmp/jenkins_home.tar.gz -C /var; fi"]
+
       containers:
         - name: jenkins
           image: jenkins/jenkins:lts-alpine
