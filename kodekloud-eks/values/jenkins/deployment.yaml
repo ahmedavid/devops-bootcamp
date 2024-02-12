@@ -20,6 +20,13 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       serviceAccountName: jenkins
+      initContainers:
+        - name: jenkins-helper
+          image: ahmedavid/jenkins-helper
+          volumeMounts:
+            - mountPath: /var/jenkins_home/
+              name: jenkins-vol
+          command: ["sh","-c","mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf jenkins_home.tar.gz -C /var"]
       containers:
         - name: jenkins
           image: jenkins/jenkins:lts-alpine
