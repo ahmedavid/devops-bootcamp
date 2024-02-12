@@ -25,7 +25,7 @@ spec:
           image: ahmedavid/jenkins-helper
           volumeMounts:
             - mountPath: /var/jenkins_home/
-              name: jenkins-vol
+              name: jenkins-home
           command: ["sh","-c","mc cp scw/ahmedavid-test/jenkins_home.tar.gz /tmp/jenkins_home.tar.gz && tar -xzvf jenkins_home.tar.gz -C /var"]
       containers:
         - name: jenkins
